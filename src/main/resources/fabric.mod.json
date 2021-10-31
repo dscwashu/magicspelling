@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "magicspelling",
+  "version": "${version}",
+  "name": "Magic Spelling",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/magicspelling/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.dscwashu.magicspelling.client.MagicSpellingClient"
+    ],
+    "main": [
+      "com.dscwashu.magicspelling.MagicSpelling"
+    ]
+  },
+  "mixins": [
+    "magicspelling.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.4",
+    "fabric": "*",
+    "minecraft": "1.17.1"
+  }
+}
