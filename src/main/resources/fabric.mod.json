@@ -10,9 +10,6 @@
   "icon": "assets/magicspelling/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "com.dscwashu.magicspelling.client.MagicSpellingClient"
-    ],
     "main": [
       "com.dscwashu.magicspelling.MagicSpelling"
     ]
