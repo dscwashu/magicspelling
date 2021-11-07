@@ -1,4 +1,10 @@
 package com.dscwashu.magicspelling;
 
-public class MagicSpelling {
+import net.fabricmc.api.ModInitializer;
+
+public class MagicSpelling implements ModInitializer {
+    @Override
+    public void onInitialize() {
+
+    }
 }
