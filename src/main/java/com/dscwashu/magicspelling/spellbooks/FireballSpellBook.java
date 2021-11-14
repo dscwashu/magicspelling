@@ -9,7 +9,7 @@ public class FireballSpellBook extends SpellBook {
     }
 
     @Override
-    protected void castSpell(World world, PlayerEntity playerEntity) {
+    protected void effectSpell(World world, PlayerEntity playerEntity) {
         System.out.println("Explosion!");
     }
 }
