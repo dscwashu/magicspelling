@@ -10,10 +10,11 @@ public class FireballSpellBook extends SpellBook {
     }
 
     @Override
-    protected void castSpell(World world, PlayerEntity playerEntity) {
-
+    protected void effectSpell(World world, PlayerEntity playerEntity, double power) {
         FireballEntity fireball = new FireballEntity(world,playerEntity,0d,0d,0d,100);
         fireball.setVelocity(playerEntity.getPos().normalize().x,playerEntity.getPos().normalize().y,playerEntity.getPos().normalize().z);
         world.spawnEntity(fireball);
+
+        System.out.println("Explosion!");
     }
 }

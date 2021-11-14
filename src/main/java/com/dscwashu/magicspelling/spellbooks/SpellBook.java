@@ -14,9 +14,15 @@ public abstract class SpellBook extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        castSpell(world, playerEntity);
+        double accuracy = 1;
+        effectSpell(world, playerEntity, accuracy);
         return TypedActionResult.success(playerEntity.getStackInHand(hand));
     }
 
-    protected abstract void castSpell(World world, PlayerEntity playerEntity);
+    /**
+     * Effects the SpellBook's spell.
+     * @param power The spell's power, from 0 to 1.
+     */
+    protected abstract void effectSpell(World world, PlayerEntity playerEntity, double power);
+
 }
