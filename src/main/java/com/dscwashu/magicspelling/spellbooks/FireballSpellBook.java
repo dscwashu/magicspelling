@@ -6,7 +6,8 @@ import net.minecraft.world.World;
 
 public class FireballSpellBook extends SpellBook {
     public FireballSpellBook(Settings settings) {
-        super(settings);
+        super(settings, "Utinam inundare perniciosa vis, torrens virtutis, perniciosa vis nulla alia!"
+                + " Omnem creaturam ad suum fontem mitte!");
     }
 
     @Override

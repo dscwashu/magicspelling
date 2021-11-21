@@ -6,17 +6,43 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.ricecode.similarity.LevenshteinDistanceStrategy;
+import net.ricecode.similarity.SimilarityStrategy;
+import net.ricecode.similarity.StringSimilarityService;
+import net.ricecode.similarity.StringSimilarityServiceImpl;
 
 public abstract class SpellBook extends Item {
-    public SpellBook(Settings settings) {
+    protected final String spellText;
+
+    public SpellBook(Settings settings, String spellText) {
         super(settings);
+        this.spellText = spellText;
     }
 
+    /**
+     * The right-click action of a SpellBook.
+     */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-        double accuracy = 1;
+        String playerSpellInput = getPlayerSpellInput();
+
+        // Find how close the player's input was to the actual spell text.
+        // This value is used to prevent the player from spamming spells.
+        SimilarityStrategy strategy = new LevenshteinDistanceStrategy();
+        StringSimilarityService service = new StringSimilarityServiceImpl(strategy);
+        double accuracy = service.score(this.spellText, playerSpellInput);
+
         effectSpell(world, playerEntity, accuracy);
+
         return TypedActionResult.success(playerEntity.getStackInHand(hand));
+    }
+
+    /**
+     * Helper method to get the player's input.
+     * @return the player's input
+     */
+    String getPlayerSpellInput() {
+        return "Sample Text";
     }
 
     /**
