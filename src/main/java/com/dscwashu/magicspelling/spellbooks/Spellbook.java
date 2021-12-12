@@ -11,10 +11,10 @@ import net.ricecode.similarity.SimilarityStrategy;
 import net.ricecode.similarity.StringSimilarityService;
 import net.ricecode.similarity.StringSimilarityServiceImpl;
 
-public abstract class SpellBook extends Item {
+public abstract class Spellbook extends Item {
     protected final String spellText;
 
-    public SpellBook(Settings settings, String spellText) {
+    public Spellbook(Settings settings, String spellText) {
         super(settings);
         this.spellText = spellText;
     }

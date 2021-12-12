@@ -9,8 +9,8 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
-public class LightningSpellBook extends SpellBook {
-    public LightningSpellBook(Settings settings) {
+public class LightningSpellbook extends Spellbook {
+    public LightningSpellbook(Settings settings) {
         super(settings, "Utinam inundare perniciosa vis, torrens virtutis, perniciosa vis nulla alia!"
                 + " Omnem creaturam ad suum fontem mitte!");
     }
