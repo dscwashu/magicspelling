@@ -1,12 +1,17 @@
 package com.dscwashu.magicspelling.spellbooks;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class LightningSpellbook extends Spellbook {
@@ -15,33 +20,30 @@ public class LightningSpellbook extends Spellbook {
                 + " Omnem creaturam ad suum fontem mitte!");
     }
 
+
     @Override
     protected void effectSpell(World world, PlayerEntity playerEntity, double power) {
         MinecraftClient client = MinecraftClient.getInstance();
         HitResult hit = client.crosshairTarget;
 
         switch(hit.getType()) {
+            case MISS:
+                //nothing near enough
+                break;
             case BLOCK:
                 BlockHitResult blockHit = (BlockHitResult) hit;
-
-                LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world);
-                lightning.updatePosition(blockHit.getPos().getX(),blockHit.getPos().getY(), blockHit.getPos().getZ());
-                world.spawnEntity(lightning);
-
+                BlockPos blockPos = blockHit.getBlockPos();
+                BlockState blockState = client.world.getBlockState(blockPos);
+                Block block = blockState.getBlock();
                 break;
             case ENTITY:
                 EntityHitResult entityHit = (EntityHitResult) hit;
-
-                LightningEntity lightningE = EntityType.LIGHTNING_BOLT.create(world);
-                lightningE.updatePosition(entityHit.getPos().getX(),entityHit.getPos().getY(), entityHit.getPos().getZ());
-                world.spawnEntity(lightningE);
-
-                break;
-            default:
-                //nothing near enough
-
+                Entity entity = entityHit.getEntity();
                 break;
         }
 
+        ServerWorld serverWorld = (ServerWorld) world;
+        LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world);
+        serverWorld.spawnEntity(lightning);
     }
 }
